@@ -5,29 +5,29 @@ public class RomanNumber : ICloneable, IComparable
     //Конструктор получает число n, которое должен представлять объект класса
     public RomanNumber(ushort n)
     {
-        if (n > 0) numb = n;
-        else throw new RomanNumberException("Входные данные меньше или равны 0");
+        if (n > 0 && n < 4000) numb = n;
+        else throw new RomanNumberException("Входные данные неверные");
     }
     //Сложение римских чисел
-    public static RomanNumber Add(RomanNumber? n1, RomanNumber? n2)
+    public static RomanNumber operator +(RomanNumber? n1, RomanNumber? n2)
     {
         if (n1 == null || n2 == null || n1.numb + n2.numb > 3999) throw new RomanNumberException("Неверные параметры");
         else return new RomanNumber((ushort)(n1.numb + n2.numb));
     }
     //Вычитание римских чисел
-    public static RomanNumber Sub(RomanNumber? n1, RomanNumber? n2)
+    public static RomanNumber operator -(RomanNumber? n1, RomanNumber? n2)
     {
         if (n1 == null || n2 == null || n1.numb - n2.numb <= 0) throw new RomanNumberException("Неверные параметры");
         else return new RomanNumber((ushort)(n1.numb - n2.numb));
     }
     //Умножение римских чисел
-    public static RomanNumber Mul(RomanNumber? n1, RomanNumber? n2)
+    public static RomanNumber operator *(RomanNumber? n1, RomanNumber? n2)
     {
         if (n1 == null || n2 == null || n1.numb * n2.numb > 3999 || n1.numb * n2.numb <= 0 ) throw new RomanNumberException("Неверные параметры");
         else return new RomanNumber((ushort)(n1.numb * n2.numb));
     }
     //Целочисленное деление римских чисел
-    public static RomanNumber Div(RomanNumber? n1, RomanNumber? n2)
+    public static RomanNumber operator /(RomanNumber? n1, RomanNumber? n2)
     {
         if (n1 == null || n2 == null || n2.numb == 0 || n1.numb/n2.numb <= 0) throw new RomanNumberException("Неверные параметры");
         else return new RomanNumber((ushort)(n1.numb / n2.numb));
